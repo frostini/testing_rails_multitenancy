@@ -31,7 +31,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'                
 # Sass-powered version of Bootstrap, ready to drop right into your Sass powered applications
 # /////////
-
+gem "pry"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
