@@ -31,7 +31,10 @@ gem 'simple_form'
 gem 'bootstrap-sass'                
 # Sass-powered version of Bootstrap, ready to drop right into your Sass powered applications
 # /////////
-gem "pry"
+
+# for heroku and rails deployment
+gem 'rails_12factor', group: :production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -44,6 +47,7 @@ gem "pry"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
 end
 
 group :development do
