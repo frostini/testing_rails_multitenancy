@@ -47,7 +47,9 @@ Apartment.configure do |config|
   #   end
   # end
   #
-  config.tenant_names = lambda { ToDo_Tenant_Or_User_Model.pluck :database }
+
+  config.excluded_models = %w{ Tenant }
+  config.tenant_names = lambda { Tenant.pluck :domain }
 
   #
   # ==> PostgreSQL only options
@@ -86,6 +88,7 @@ end
 # Rails.application.config.middleware.use 'Apartment::Elevators::Generic', lambda { |request|
 #   request.host.split('.').first
 # }
+
 
 # Rails.application.config.middleware.use 'Apartment::Elevators::Domain'
 Rails.application.config.middleware.use 'Apartment::Elevators::Subdomain'
