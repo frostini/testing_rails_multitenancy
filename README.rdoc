@@ -1,28 +1,37 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+THIS IS A VERY SIMPLE, SAMPLE APPLICATION SHOWING A BASIC MULTI-TENANT SET-UP AS PER THE APARTMENT GEM.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+built out instructions.
+
+1. bundle install
+2. rake db:create
+3. rake db:migrate
+4. bundle exec rails g simple_form:install --bootstrap
+5. bundle exec rails g apartment:install
+
+6. to see in development, you must edit /etc/hosts
+
+127.0.0.1    www.domainetoserve1.com
+127.0.0.1    www.domainetoserve2.com
+
+can fire up server at http://www.domainetoservea.com:3000
+
+7. you must switch between tenants when creating objects:
+
+EXAMPLE
+
+Tenant.find_by(domain:"domainetoserve1").switch!
+models = %w(A3 A4 A5 R8 Q5 A6 Q7 Q3 A8 TT A5 RS7 A7 S8 S5 S3 SQ5 S4 RS5 S7 S6 )
+models.each{|n| Model.create name:n}
+Shop.create name:"Rails Shop", address:"123 E Main Street, Mesa, AZ"
+Shop.create name:"Node Place", address:"42 E Lafayette Avenue, Anytown, USA"
+ 
+
+Tenant.find_by(domain:"domainetoserve2").switch!
+models = %w(A3 A4 A5 R8 Q5 A6 Q7 Q3 A8 TT A5 RS7 A7 S8 S5 S3 SQ5 S4 RS5 S7 S6 )
+models.each{|n| Model.create name:n}
+Shop.create name:"Rails Corner", address:"123 E Main Street, Mesa, AZ"
+Shop.create name:"Node Point", address:"42 E Lafayette Avenue, Anytown, USA"
+
+8. Point DNS from all tenants to share root app.
+ 
